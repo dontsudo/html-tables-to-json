@@ -3,7 +3,7 @@
 	<p>
 		<b>A simple and easy to use parser for HTML table to JSON
 	</p>
-	<br>
+	<br />
 </div>
 
 ## Installation
@@ -18,22 +18,22 @@
 ```ts
 const cheerioTablePraser = new CheerioTableParser(
   `
-  <table>
-    <tbody>
-      <tr>
-        <th>header 1</th>
-        <th>header 2</th>
-      </tr>
-      <tr>
-        <td>cell 1</td>
-        <td>cell 2</td>
-        <td>cell 3</td>
-      </tr>
-      <tr>
-        <td colspan="2">cell 4</td>
-      </tr>
-    </tbody>
-  </table>
+<table>
+  <tbody>
+    <tr>
+      <th>header 1</th>
+      <th>header 2</th>
+    </tr>
+    <tr>
+      <td>cell 1</td>
+      <td>cell 2</td>
+      <td>cell 3</td>
+    </tr>
+    <tr>
+      <td colspan="2">cell 4</td>
+    </tr>
+  </tbody>
+</table>
 `
 )
 const result = cheerioTablePraser.parse()
