@@ -1,0 +1,39 @@
+{
+  "name": "htmltable",
+  "version": "1.0.0",
+  "description": "Tool for HTML to JSON",
+  "engines": {
+    "node": ">=12"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "html",
+    "table",
+    "csv"
+  ],
+  "main": "./build/src",
+  "types": "./build/src/index.d.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc",
+    "prettier": "prettier --write .",
+    "lint": "prettier --check . && eslint . --ext .ts && cspell '**/*' ",
+    "test": "jest ./test",
+    "prebuild": "npm run clean",
+    "clean": "rm -rf ./build"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^28.1.4",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
+    "eslint": "^7.24.0",
+    "jest": "^28.1.2",
+    "prettier": "^2.8.8",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.8.4"
+  }
+}
