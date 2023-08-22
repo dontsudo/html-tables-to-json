@@ -1,5 +1,5 @@
 <div align="center">
-	<h1>Parser for &lttable%gt to JSON</h1>
+	<h1>Parser for &lttable&gt to JSON</h1>
 	<p>
 		<b>A simple and easy to use parser for HTML table to JSON
 	</p>
