@@ -1,32 +1,67 @@
 import { CheerioTableParser } from "../src"
 
-const RAW_HTML = `
-<table>
-  <tbody>
-    <tr>
-      <th>header 1</th>
-      <th>header 2</th>
-    </tr>
-    <tr>
-      <td>cell 1</td>
-      <td>cell 2</td>
-    </tr>
-    <tr>
-      <td colspan="2">cell 3</td>
-    </tr>
-  </tbody>
-</table>
-`
+describe("Cheerio Html Table Parser", () => {
+  it("should parse a table with colspan", () => {
+    const cheerioTablePraser = new CheerioTableParser(
+      `
+      <table>
+        <tbody>
+          <tr>
+            <th>header 1</th>
+            <th>header 2</th>
+          </tr>
+          <tr>
+            <td>cell 1</td>
+            <td>cell 2</td>
+            <td>cell 3</td>
+          </tr>
+          <tr>
+            <td colspan="2">cell 4</td>
+          </tr>
+        </tbody>
+      </table>
+      `
+    )
+    const arr = cheerioTablePraser.parse()
 
-describe("Cheerio Based Html Table Parser", () => {
-  it("should be constructed without throwing", () => {
-    new CheerioTableParser(RAW_HTML)
+    expect(arr).toEqual([
+      ["header 1", "header 2"],
+      ["cell 1", "cell 2", "cell 3"],
+      ["cell 4", "cell 4"],
+    ])
   })
 
-  it("should parse a table", () => {
-    const parser = new CheerioTableParser(RAW_HTML)
-    const arr = parser.parse()
+  it("should parse a table with rowspan", () => {
+    const cheerioTablePraser = new CheerioTableParser(
+      `
+      <table>
+        <tbody>
+          <tr>
+            <th>header 1</th>
+            <th>header 2</th>
+          </tr>
+          <tr>
+            <td>cell 1</td>
+            <td>cell 2</td>
+            <td>cell 3</td>
+          </tr>
+          <tr>
+            <td rowspan="2">cell 4</td>
+          </tr>
+          <tr>
+            <td>cell 5</td>
+          </tr>
+        </tbody>
+      </table>
+      `
+    )
+    const arr = cheerioTablePraser.parse()
 
-    console.log(arr)
+    expect(arr).toEqual([
+      ["header 1", "header 2"],
+      ["cell 1", "cell 2", "cell 3"],
+      ["cell 4"],
+      ["cell 4", "cell 5"],
+    ])
   })
 })
