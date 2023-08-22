@@ -1,5 +1,7 @@
 import * as cheerio from "cheerio"
 
+// TODO: TableParser should be an interface
+
 /**
  * Parses HTML into a DOM tree using Cheerio.
  */
@@ -14,15 +16,18 @@ class CheerioTableParser {
    * @returns array of cheerio instances representing the tables in the document
    */
   public parse() {
+    const result: string[][][] = []
     const $tables = this.$("table")
 
     if ($tables.length === 0) {
       throw new Error("No tables found")
     }
 
-    return $tables
-      .map((_, table) => this.expandColspanRowspan(this.parseTr(this.$(table))))
-      .get()
+    $tables.each((_, table) => {
+      result.push(this.expandColspanRowspan(this.parseTr(this.$(table))))
+    })
+
+    return result
   }
 
   /**

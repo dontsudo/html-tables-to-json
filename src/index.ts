@@ -1,1 +1,1 @@
-export { CheerioTableParser as CheerioTableParser } from "./parser"
+export { CheerioTableParser } from "./parser"

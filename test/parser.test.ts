@@ -24,7 +24,7 @@ describe("Cheerio Html Table Parser", () => {
     )
     const arr = cheerioTablePraser.parse()
 
-    expect(arr).toEqual([
+    expect(arr[0]).toEqual([
       ["header 1", "header 2"],
       ["cell 1", "cell 2", "cell 3"],
       ["cell 4", "cell 4"],
@@ -57,7 +57,7 @@ describe("Cheerio Html Table Parser", () => {
     )
     const arr = cheerioTablePraser.parse()
 
-    expect(arr).toEqual([
+    expect(arr[0]).toEqual([
       ["header 1", "header 2"],
       ["cell 1", "cell 2", "cell 3"],
       ["cell 4"],
