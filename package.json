@@ -1,12 +1,13 @@
 {
-  "name": "htmltable",
-  "version": "1.0.0",
-  "description": "Tool for HTML to JSON",
+  "name": "html-tables-to-json",
+  "version": "0.0.1",
+  "description": "Parser for HTML to JSON",
   "engines": {
     "node": ">=12"
   },
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/au2nd/htmltable"
   },
   "keywords": [
     "html",
@@ -24,8 +25,12 @@
     "prebuild": "npm run clean",
     "clean": "rm -rf ./build"
   },
-  "author": "",
+  "author": "au2nd <chotnt741@gmail.com>",
   "license": "MIT",
+  "files": [
+    "build/package.json",
+    "build/src/**"
+  ],
   "devDependencies": {
     "@types/jest": "^28.1.4",
     "@typescript-eslint/eslint-plugin": "^5.39.0",

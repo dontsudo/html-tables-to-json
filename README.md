@@ -10,12 +10,14 @@
 
 ```sh
 # TODO: add installation instructions
-
+$ npm install html-tables-to-json
 ```
 
 ## Usage
 
 ```ts
+import { CheerioTableParser } from "html-tables-to-json"
+
 const tableParser = new CheerioTableParser(
   `
   <table>
