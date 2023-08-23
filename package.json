@@ -1,6 +1,6 @@
 {
   "name": "html-tables-to-json",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Parser for HTML to JSON",
   "engines": {
     "node": ">=12"
