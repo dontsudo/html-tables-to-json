@@ -9,7 +9,6 @@
 ## Installation
 
 ```sh
-# TODO: add installation instructions
 $ npm install html-tables-to-json
 ```
 
@@ -18,7 +17,8 @@ $ npm install html-tables-to-json
 ```ts
 import { CheerioTableParser } from "html-tables-to-json"
 
-const tableParser = new CheerioTableParser(
+const tableParser = new CheerioTableParser()
+const result = tableParser.parse(
   `
   <table>
     <tbody>
@@ -38,7 +38,6 @@ const tableParser = new CheerioTableParser(
   </table>
   `
 )
-const result = tableParser.parse()
 
 console.log(result[0])
 // => output

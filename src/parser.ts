@@ -6,16 +6,14 @@ import * as cheerio from "cheerio"
  * Parses HTML into a DOM tree using Cheerio.
  */
 class CheerioTableParser {
-  private readonly $: cheerio.CheerioAPI
-
-  constructor(doc: string) {
-    this.$ = cheerio.load(doc)
-  }
+  private $!: cheerio.CheerioAPI
 
   /**
    * @returns array of cheerio instances representing the tables in the document
    */
-  public parse() {
+  public parse(doc: string) {
+    this.$ = cheerio.load(doc)
+
     const result: string[][][] = []
     const $tables = this.$("table")
 
