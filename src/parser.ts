@@ -33,22 +33,22 @@ class CheerioTableParser {
    *
    * @see Any cell with `rowspan` or `colspan` will have its contents copied
    *      to subsequent cells.
-   * @param rows list of cheerio instances representing rows
+   * @param $rows list of cheerio instances representing rows
    * @returns array of array, each returned row is a list of string text.
    */
   private expandColspanRowspan(
-    rows: cheerio.Cheerio<cheerio.Element>
+    $rows: cheerio.Cheerio<cheerio.Element>
   ): string[][] {
     const allTexts: string[][] = []
-    let remainder: [number, string, number][] = []
+    let remainder: [number, string, number][] = [] // [index, text, rowspan]
 
-    rows.each((_, tr) => {
+    $rows.each((_, tr) => {
       const texts: string[] = []
       const nextRemainder: [number, string, number][] = []
 
       let index = 0
-      const tds = this.parseTd(this.$(tr))
-      tds.each((_, td) => {
+      const $tds = this.parseTd(this.$(tr))
+      $tds.each((_, td) => {
         // push texts from previous rows with rowspan > 1 that come
         // before this <td>
         while (
@@ -89,22 +89,8 @@ class CheerioTableParser {
       }
 
       allTexts.push(texts)
-      remainder.push(...nextRemainder)
-    })
-
-    // Append rows that only appear the previous row had non-1 rowspan
-    while (remainder.length > 0) {
-      const texts: string[] = []
-      const nextRemainder: [number, string, number][] = []
-      for (const [prevIndex, prevText, prevRowspan] of remainder) {
-        texts.push(prevText)
-        if (prevRowspan > 1) {
-          nextRemainder.push([prevIndex, prevText, prevRowspan - 1])
-        }
-      }
-      allTexts.push(texts)
       remainder = nextRemainder
-    }
+    })
 
     return allTexts
   }
@@ -112,23 +98,23 @@ class CheerioTableParser {
   /**
    * Return the list of row elements from the parsed table element.
    *
-   * @param table the table to parse
+   * @param $table the table to parse
    * @returns array of cheerio instances representing the rows in the table
    */
   private parseTr(
-    table: cheerio.Cheerio<cheerio.Element>
+    $table: cheerio.Cheerio<cheerio.Element>
   ): cheerio.Cheerio<cheerio.Element> {
-    return table.find("tr")
+    return $table.find("tr")
   }
 
   /**
-   * @param row the row to parse
+   * @param $row the row to parse
    * @returns array of cheerio instances representing the cells in the row
    */
   private parseTd(
-    row: cheerio.Cheerio<cheerio.Element>
+    $row: cheerio.Cheerio<cheerio.Element>
   ): cheerio.Cheerio<cheerio.Element> {
-    return row.find("td, th")
+    return $row.find("td, th")
   }
 }
 
